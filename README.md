@@ -1,4 +1,4 @@
-﻿# RAG Doctor
+# RAG Doctor
 
 ### Explainable RAG Diagnostics and Observability Platform
 
@@ -46,7 +46,35 @@ RAG Doctor analyzes these failure patterns and produces structured diagnostic re
 
 - Golden test cases and a reproducible evaluation runner.
 
-## 3. Architecture
+
+## 3. Application Screenshots
+
+### Dashboard Overview
+
+![RAG Doctor Dashboard](docs/screenshots/01-dashboard.png)
+
+### Diagnostic Input
+
+![Diagnostic Input](docs/screenshots/02-diagnostic-input.png)
+
+### Diagnostic Report
+
+![Diagnostic Report](docs/screenshots/03-diagnostic-report.png)
+
+### Evidence and Findings
+
+![Evidence and Findings](docs/screenshots/04-evidence-findings.png)
+
+### Agent Execution Monitor
+
+![Agent Execution Monitor](docs/screenshots/05-agent-monitor.png)
+
+### Workflow Execution Timeline
+
+![Workflow Timeline](docs/screenshots/06-workflow-timeline.png)
+
+
+## 4. Architecture
 
 The diagnostic workflow coordinates four specialist auditors:
 
@@ -64,7 +92,7 @@ The diagnostic workflow coordinates four specialist auditors:
 
 The workflow aggregates specialist findings into a unified diagnostic report containing severity, evidence, recommendations, limitations, and a primary root-cause hypothesis.
 
-## 4. Technology Stack
+## 5. Technology Stack
 
 **Backend:** Python, FastAPI, Pydantic, LangGraph
 
@@ -72,7 +100,7 @@ The workflow aggregates specialist findings into a unified diagnostic report con
 
 **Testing and Evaluation:** Pytest, HTTPX, JSON-based golden test cases
 
-## 5. Project Structure
+## 6. Project Structure
 
 ```text
 
@@ -114,7 +142,7 @@ rag-doctor/
 
 ```
 
-## 6. Setup and Installation
+## 7. Setup and Installation
 
 ### Prerequisites
 
@@ -174,7 +202,7 @@ http://localhost:5173
 
 ```
 
-## 7. API
+## 8. API
 
 The main diagnostic endpoint is:
 
@@ -186,7 +214,7 @@ POST /api/v1/diagnostics
 
 The endpoint accepts diagnostic input and returns a structured report containing findings, agent executions, execution events, metadata, and errors.
 
-## 8. Testing
+## 9. Testing
 
 Run backend regression tests from the project root:
 
@@ -196,7 +224,7 @@ Run backend regression tests from the project root:
 
 ```
 
-## 9. Evaluation Benchmark
+## 10. Evaluation Benchmark
 
 The evaluation suite contains seven predefined golden test cases covering:
 
@@ -226,7 +254,7 @@ The latest recorded benchmark run passed all seven predefined cases.
 
 **Important:** The reported 100% expected-output agreement applies only to these seven test cases. It is not a measurement of real-world accuracy, precision, recall, or semantic correctness.
 
-## 10. Current Limitations
+## 11. Current Limitations
 
 - The diagnostic engine uses deterministic heuristics rather than LLM-based semantic verification.
 
