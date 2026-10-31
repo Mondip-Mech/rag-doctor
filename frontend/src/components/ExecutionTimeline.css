@@ -1,0 +1,164 @@
+.execution-timeline {
+    margin: 32px 0;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 17px;
+    min-height: 94px;
+}
+
+.timeline-track {
+    width: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.timeline-marker {
+    width: 11px;
+    height: 11px;
+    margin-top: 4px;
+    border: 2px solid var(--bg-panel);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--border-primary);
+    z-index: 1;
+}
+
+.timeline-marker.started {
+    background: var(--status-info);
+}
+
+.timeline-marker.completed {
+    background: var(--status-success);
+}
+
+.timeline-marker.failed {
+    background: var(--status-error);
+}
+
+.timeline-marker.retrying {
+    background: var(--status-warning);
+}
+
+.timeline-marker.skipped {
+    background: var(--text-muted);
+}
+
+.timeline-connector {
+    position: absolute;
+    top: 17px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-primary);
+}
+
+.timeline-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0 0 22px;
+}
+
+.timeline-item-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.timeline-item-heading strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.timeline-node {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.timeline-event-badge {
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.timeline-event-badge.started {
+    color: var(--status-info);
+    background: rgba(89, 168, 255, 0.1);
+}
+
+.timeline-event-badge.completed {
+    color: var(--status-success);
+    background: rgba(54, 201, 145, 0.1);
+}
+
+.timeline-event-badge.failed {
+    color: var(--status-error);
+    background: rgba(241, 109, 121, 0.1);
+}
+
+.timeline-event-badge.retrying {
+    color: var(--status-warning);
+    background: rgba(245, 185, 66, 0.1);
+}
+
+.timeline-event-badge.skipped {
+    color: var(--text-muted);
+    background: var(--bg-hover);
+}
+
+.timeline-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 9px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.timeline-detail {
+    margin: 9px 0 0;
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.timeline-empty {
+    padding: 28px;
+    text-align: center;
+    color: var(--text-muted);
+    background: var(--bg-panel);
+    border: 1px dashed var(--border-primary);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .timeline-list {
+        padding: 15px;
+    }
+
+    .timeline-item-heading {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .timeline-event-badge {
+        align-self: flex-start;
+    }
+}

@@ -1,0 +1,143 @@
+.run-history-panel {
+    margin: 30px 0;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.history-entry {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 17px;
+    text-align: left;
+    color: var(--text-primary);
+    background: var(--bg-panel);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.history-entry:hover {
+    border-color: var(--accent-primary);
+    background: var(--bg-hover);
+}
+
+.history-entry.selected {
+    border-color: var(--accent-primary);
+    background: var(--accent-soft);
+}
+
+.history-entry-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+}
+
+.history-entry-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-entry-heading strong {
+    font-size: 12px;
+}
+
+.history-status {
+    padding: 4px 7px;
+    border-radius: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.history-status.completed {
+    color: var(--status-success);
+    background: rgba(54, 201, 145, 0.1);
+}
+
+.history-status.partial,
+.history-status.running,
+.history-status.pending {
+    color: var(--status-warning);
+    background: rgba(245, 185, 66, 0.1);
+}
+
+.history-status.failed {
+    color: var(--status-error);
+    background: rgba(241, 109, 121, 0.1);
+}
+
+.history-run-id,
+.history-timestamp {
+    color: var(--text-muted);
+    font-size: 10px;
+    overflow-wrap: anywhere;
+}
+
+.history-summary {
+    color: var(--text-secondary);
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.history-entry-count {
+    min-width: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.history-entry-count strong {
+    font-size: 18px;
+}
+
+.history-entry-count span {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+.history-empty {
+    padding: 25px;
+    text-align: center;
+    background: var(--bg-panel);
+    border: 1px dashed var(--border-primary);
+    border-radius: var(--radius-md);
+}
+
+.history-empty strong {
+    font-size: 12px;
+}
+
+.history-empty p {
+    margin: 7px 0 0;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.history-disclaimer {
+    margin: 12px 0 0;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+@media (max-width: 600px) {
+    .history-entry {
+        align-items: flex-start;
+    }
+
+    .history-entry-count {
+        min-width: 55px;
+    }
+}

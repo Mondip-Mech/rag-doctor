@@ -1,0 +1,176 @@
+{
+    "benchmark_name": "RAG Doctor Specialist Evaluation",
+    "benchmark_version": "1.0",
+    "description": "Human-defined diagnostic scenarios for evaluating deterministic specialist agents.",
+    "cases": [
+        {
+            "test_id": "TC-001",
+            "title": "Empty retrieval",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Refunds are available within 30 days.",
+                "retrieved_chunks": []
+            },
+            "expected_findings": [
+                {
+                    "category": "retrieval_miss",
+                    "agent": "retrieval_auditor",
+                    "severity": "critical"
+                }
+            ]
+        },
+        {
+            "test_id": "TC-002",
+            "title": "Matching short answer with retrieved evidence",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Refunds are available within 30 days.",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-001",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.95,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": []
+        },
+        {
+            "test_id": "TC-003",
+            "title": "Strong answer-evidence vocabulary mismatch",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Employees receive twenty days of paid annual leave after completing probation. Unused leave expires at the end of each calendar year.",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-001",
+                        "content": "Refunds are available within 30 days of purchase. Items must be unused and accompanied by a receipt.",
+                        "score": 0.95,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": [
+                {
+                    "category": "unsupported_claim",
+                    "agent": "grounding_auditor",
+                    "severity": "medium"
+                }
+            ]
+        },
+        {
+            "test_id": "TC-004",
+            "title": "Low retrieval relevance",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Refunds are available within 30 days.",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-low-001",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.12,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": [
+                {
+                    "category": "low_relevance",
+                    "agent": "retrieval_auditor",
+                    "severity": "high"
+                }
+            ]
+        },
+        {
+            "test_id": "TC-005",
+            "title": "Duplicate retrieved chunks",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Refunds are available within 30 days.",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-duplicate-001",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.95,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    },
+                    {
+                        "chunk_id": "refund-duplicate-002",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.94,
+                        "rank": 2,
+                        "source": "refund_policy_copy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": [
+                {
+                    "category": "duplicate_context",
+                    "agent": "context_auditor",
+                    "severity": "medium"
+                }
+            ]
+        },
+        {
+            "test_id": "TC-006",
+            "title": "Empty assembled context with retrieved chunks",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "Refunds are available within 30 days.",
+                "assembled_context": "",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-context-001",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.95,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": [
+                {
+                    "category": "context_truncation",
+                    "agent": "context_auditor",
+                    "severity": "critical"
+                }
+            ]
+        },
+        {
+            "test_id": "TC-007",
+            "title": "Empty generated answer",
+            "input": {
+                "query": "What is the refund policy?",
+                "generated_answer": "",
+                "retrieved_chunks": [
+                    {
+                        "chunk_id": "refund-generation-001",
+                        "content": "Refunds are available within 30 days of purchase.",
+                        "score": 0.95,
+                        "rank": 1,
+                        "source": "refund_policy.pdf",
+                        "metadata": {}
+                    }
+                ]
+            },
+            "expected_findings": [
+                {
+                    "category": "generation_error",
+                    "agent": "generation_auditor",
+                    "severity": "high"
+                }
+            ]
+        }
+    ]
+}

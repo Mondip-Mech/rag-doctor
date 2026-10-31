@@ -1,0 +1,106 @@
+.agent-execution-panel {
+    margin: 30px 0;
+}
+
+.agent-execution-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.agent-execution-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+}
+
+.agent-execution-icon {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: var(--accent-primary);
+    background: var(--accent-soft);
+    font-size: 20px;
+}
+
+.agent-execution-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.agent-execution-info h3 {
+    margin: 0 0 7px;
+    font-size: 12px;
+}
+
+.agent-execution-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.agent-findings-count {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--status-info);
+    font-size: 10px;
+}
+
+.agent-status {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.agent-status.completed {
+    color: var(--status-success);
+    background: rgba(54, 201, 145, 0.1);
+}
+
+.agent-status.failed {
+    color: var(--status-error);
+    background: rgba(241, 109, 121, 0.1);
+}
+
+.agent-status.running,
+.agent-status.queued {
+    color: var(--status-warning);
+    background: rgba(245, 185, 66, 0.1);
+}
+
+.agent-status.skipped {
+    color: var(--text-muted);
+    background: var(--bg-hover);
+}
+
+.agent-empty-state {
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    background: var(--bg-panel);
+    border: 1px dashed var(--border-primary);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .agent-execution-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .agent-status {
+        margin-left: 54px;
+    }
+}
